@@ -14,8 +14,8 @@ format short
 
 % Define study variables
 cDef = [0,0.4,0.7]; % taper ratio values
-nmin = 200; % smallest DOF to consider
-nmax = nmin; % largest DOF to consider
+nmin = 1; % smallest DOF to consider
+nmax = 5; % largest DOF to consider
 xl = 1; % Initial Position of last mass (IC)
 vl = 0;% Initial Velocity of last mass (IC)
 Flex = false; % select Simple or Flexible stiffness matrix
@@ -24,7 +24,7 @@ Flex = false; % select Simple or Flexible stiffness matrix
 % (compare nat freq across all c or all n results) 
 Nsize = (nmax-nmin+1);
 Csize = size(cDef,2);
-Wsize = Nsize*Csize; 
+%Wsize = Nsize*Csize; 
 allW = zeros(Nsize, nmax, Csize);% all nat freqs
 allWd = zeros(Nsize, nmax, Csize);% frequency change across #DOF
 %allU = zeros(nmax,nmax,Csize); % all U vectors (modes)
@@ -78,13 +78,13 @@ else
 end
 
 if (nmax~=nmin)
-    plotAllW(nmin,nmax,allW,allW2,rotSpeed,cDef,Nsize,'MDOF: Frequencies per DOF','Frequency (Hz)',nan); % Plot Natural Frequencies across DOFs
-    plotAllW(nmin,nmax,allWd,allWd2,rotSpeed,cDef,Nsize, 'MDOF: Successive Refinement Changes', 'Frequency Change (%)',0.1); % Plot of % change of Natural Frequencies across DOFs
-    writematrix(allW,['FrequenciesStill' type num2str(nmin) '-' num2str(nmax) '.csv'])
-    writematrix(allW2,['FrequenciesRotating' type num2str(nmin) '-' num2str(nmax) '.csv'])
+    plotAllW(nmin,nmax,allW,allW2,rotSpeed,cDef,Nsize,'MDOF: Frequencies per DOF','Frequency (Hz)',nan,type); % Plot Natural Frequencies across DOFs
+    plotAllW(nmin,nmax,allWd,allWd2,rotSpeed,cDef,Nsize, 'MDOF: Successive Refinement Changes', 'Frequency Change (%)',0.1,type); % Plot of % change of Natural Frequencies across DOFs
+    writematrix(allW,['CSV/FrequenciesStill' type num2str(nmin) '-' num2str(nmax) '.csv'])
+    writematrix(allW2,['CSV/FrequenciesRotating' type num2str(nmin) '-' num2str(nmax) '.csv'])
 elseif (nmax == nmin)
     plotModeShapes(nmax,allU2,cDef,Csize);
-    plotFreqTrends(nmax,allW,allW2,rotSpeed,cDef,Csize);
-    writematrix(allU2,['Modes' type num2str(nmax) '.csv'])
+    plotFreqTrends(nmax,allW,allW2,rotSpeed,cDef,Csize,type);
+    writematrix(allU2,['CSV/Modes' type num2str(nmax) '.csv'])
 end
 

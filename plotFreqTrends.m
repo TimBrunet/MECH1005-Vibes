@@ -1,6 +1,6 @@
 % Plot Frequency Trends
 
-function plotFreqTrends(nmax,allW,allW2,rotSpeed,cDef,Csize)
+function plotFreqTrends(nmax,allW,allW2,rotSpeed,cDef,Csize,type)
     fig = figure;
     width = 800;
     height = width * 3/7;
@@ -42,6 +42,6 @@ function plotFreqTrends(nmax,allW,allW2,rotSpeed,cDef,Csize)
     leg = legend(labels, "Orientation", 'horizontal');
     leg.Layout.Tile = "South";
 
-    saveas(gcf,['FreqTrends' num2str(nmax) '.png'])
+    saveas(gcf,['PNG/FreqTrends' type num2str(nmax) '.png'])
 end
 

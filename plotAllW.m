@@ -1,6 +1,6 @@
 % Plot all Frequencies
 
-function plotAllW(nmin,nmax,allW,allW2,O,cDef,Nsize,Title,Yaxis,threshold)
+function plotAllW(nmin,nmax,allW,allW2,O,cDef,Nsize,Title,Yaxis,threshold,type)
     fig = figure;
     width = 800;
     height = width * 3/7;
@@ -49,9 +49,9 @@ function plotAllW(nmin,nmax,allW,allW2,O,cDef,Nsize,Title,Yaxis,threshold)
     leg.Layout.Tile = "South";
 
     if true == isnan(threshold)
-        saveas(gcf,['Frequencies' num2str(nmin) '-' num2str(nmax) '.png'])
+        saveas(gcf,['PNG/Frequencies' type num2str(nmin) '-' num2str(nmax) '.png'])
     else
-        saveas(gcf,['Refinement' num2str(nmin) '-' num2str(nmax) '.png'])
+        saveas(gcf,['PNG/Refinement' type num2str(nmin) '-' num2str(nmax) '.png'])
     end
     
 end

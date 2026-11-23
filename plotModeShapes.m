@@ -1,6 +1,6 @@
 % Plot Mode Shapes
 
-function plotModeShapes(n,allU,cDef,Csize)
+function plotModeShapes(n,allU,cDef,Csize,type)
     fig = figure;
     width = 800;
     height = width * 3/7;
@@ -44,6 +44,6 @@ function plotModeShapes(n,allU,cDef,Csize)
     leg = legend(labels, "Orientation", 'horizontal');
     leg.Layout.Tile = 'South';
     
-    saveas(gcf,['ModeShapes' num2str(n) '.png']);
+    saveas(gcf,['PNG/ModeShapes' type num2str(n) '.png']);
 
 end
